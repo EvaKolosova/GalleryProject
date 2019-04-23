@@ -55,13 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
     }
 
     public void recyclerViewClick(View v){
@@ -91,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 requestPermission(this);
-                Log.e("value", "Permission Denied, You cannot see photos from Gallery.");
+                Log.e("PERMISSION", "Permission Denied, You cannot see photos from Gallery.");
             }
         }
     }

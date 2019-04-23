@@ -2,6 +2,8 @@ package com.example.picturesshowing;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.media.Image;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +18,7 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
 
     protected Context mContext;
     private Uri[] imageID;
-    private LayoutInflater mInflater;//раздуватель
+    private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
@@ -75,5 +77,4 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
-
 }

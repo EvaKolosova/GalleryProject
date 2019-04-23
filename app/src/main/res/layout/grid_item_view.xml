@@ -7,21 +7,15 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/imageOne"
         android:layout_width="0dp"
         android:layout_height="169dp"
         android:layout_columnWeight="0.5"
+        android:scaleType="fitXY"
         android:orientation="horizontal"
         android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_row="0"
+        android:layout_column="0" />
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="169dp"
-        android:layout_columnWeight="0.5"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </GridLayout>

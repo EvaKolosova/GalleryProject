@@ -59,14 +59,13 @@ public class DataFromGallery {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
 
-
 //                super.onActivityResult(requestCode, resultCode, data);
 //
 //                if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK){
 //                    Uri imageUri = data.getData();
 //                    imgView.setImageURI(imageUri);
-
-
+//
+//
 //                filePath = data.getData();
 //                if (null != filePath) {
 //                    try {

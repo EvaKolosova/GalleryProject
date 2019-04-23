@@ -11,16 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecyclerViewLinearActivity"
+        <activity android:name=".FullActivity"></activity>
+        <activity
+            android:name=".RecyclerViewLinearActivity"
             android:label="RecyclerView Linear"
-            android:parentActivityName=".MainActivity" ></activity>
-        <activity android:name=".ListViewActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ListViewActivity"
             android:label="ListView"
-            android:parentActivityName=".MainActivity" ></activity>
-        <activity android:name=".GridViewActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".GridViewActivity"
             android:label="GridView"
-            android:parentActivityName=".MainActivity" ></activity>
-        <activity android:name=".RecyclerViewGridActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".RecyclerViewGridActivity"
             android:label="RecyclerView Grid"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
@@ -33,7 +38,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.picturesshowing.MainActivity" />
-
         </activity>
     </application>
 
