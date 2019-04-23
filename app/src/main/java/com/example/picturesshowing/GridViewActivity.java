@@ -47,15 +47,6 @@ public class GridViewActivity extends AppCompatActivity {
         imagegrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                //full size image on another activity
-//                view.buildDrawingCache();
-//                Bitmap bitmap = view.getDrawingCache();
-//                ByteArrayOutputStream bs = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 50, bs);
-//                Intent intent = new Intent(GridViewActivity.this, FullActivity.class);
-//                intent.putExtra("byteArray", bs.toByteArray());
-//                startActivity(intent);
-
                 Intent intent = new Intent(GridViewActivity.this, FullActivity.class);
                 intent.setAction(android.content.Intent.ACTION_SEND);
                 String path;
@@ -73,7 +64,6 @@ public class GridViewActivity extends AppCompatActivity {
     public void getFromSdcard()
     {
         File file= new File(android.os.Environment.getExternalStorageDirectory(), "Download");
-
         if (file.isDirectory())
         {
             listFile = file.listFiles();
