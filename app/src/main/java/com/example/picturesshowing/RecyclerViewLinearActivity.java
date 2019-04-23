@@ -39,14 +39,14 @@ public class RecyclerViewLinearActivity extends AppCompatActivity implements Rec
 
 
         // data for showing pictures to user
-        List<String> data = new ArrayList<>();
+        //List<String> data = new ArrayList<>();
 
         // set up the RecyclerView
         recyclerView = findViewById(R.id.rvPictures);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+       // recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //adapter = new RecyclerViewLinearAdapter(this, data);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+        //adapter.setClickListener(this);
+        //recyclerView.setAdapter(adapter);
 
     }
     @Override

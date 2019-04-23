@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import android.widget.ListView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
+import com.bumptech.glide.Glide;
 
 public class ListViewActivity extends AppCompatActivity {
     private ListViewActivity.ImageAdapter imageAdapter;
@@ -25,8 +29,8 @@ public class ListViewActivity extends AppCompatActivity {
     File[] listFile;
 
     class D {
-        String str1;
-        String str2;
+        String image1;
+        String image2;
     }
 
     @Override
@@ -42,18 +46,6 @@ public class ListViewActivity extends AppCompatActivity {
         imagelist = findViewById(R.id.listViewImages);
         imageAdapter = new ListViewActivity.ImageAdapter();
         imagelist.setAdapter(imageAdapter);
-        imagelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.buildDrawingCache();
-                Bitmap bitmap = view.getDrawingCache();
-                ByteArrayOutputStream bs = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 50, bs);
-                Intent intent = new Intent(ListViewActivity.this, FullActivity.class);
-                intent.putExtra("byteArray", bs.toByteArray());
-                startActivity(intent);
-            }
-        });
     }
     @Override
     public void onBackPressed() {
@@ -69,8 +61,8 @@ public class ListViewActivity extends AppCompatActivity {
             for (int i = 0; i < listFile.length; i++)
             {
                 D d = new D();
-                d.str1 = listFile[i].getAbsolutePath();
-                d.str2 = listFile[++i].getAbsolutePath();
+                d.image1 = listFile[i].getAbsolutePath();
+                d.image2 = listFile[++i].getAbsolutePath();
                 f.add(d);
             }
         }
@@ -91,45 +83,65 @@ public class ListViewActivity extends AppCompatActivity {
             return position;
         }
 
-        public long getItemId(int position) {
+        public long getItemId(final int position) {
             return position;
         }
 
         public View getView(final int position, View convertView, ViewGroup parent) {
             final ListViewActivity.ViewHolder holder1;
-            final ListViewActivity.ViewHolder holder2;
 
             if (convertView == null) {
                 holder1 = new ListViewActivity.ViewHolder();
                 convertView = mInflater.inflate(R.layout.linear_row_view, null);
                 holder1.imageview = convertView.findViewById(R.id.imageFirst);
+                holder1.imageview2 = convertView.findViewById(R.id.imageSecond);
                 convertView.setTag(holder1);
 
-                holder2 = new ListViewActivity.ViewHolder();
-                holder2.imageview = convertView.findViewById(R.id.imageSecond);
-                convertView.setTag(holder2);
+                holder1.imageview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                          holder1.onItemClick(v, position, "imageview");
+                    }
+                });
+
+                holder1.imageview2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        holder1.onItemClick(v, position, "imageview2");
+                    }
+                });
             }
             else {
                 holder1 = (ListViewActivity.ViewHolder) convertView.getTag();
-                holder2 = (ListViewActivity.ViewHolder) convertView.getTag();
             }
+            D itemData = f.get(position);
+            Log.d("images", "str1 " + itemData.image1 + " str2 " + itemData.image2);
+            Glide
+                    .with(ListViewActivity.this)
+                    .load(itemData.image1)
+                    .into(holder1.imageview);
+            Glide
+                    .with(ListViewActivity.this)
+                    .load(itemData.image2)
+                    .into(holder1.imageview2);
 
-//            holder.imageview.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    //zoomImage(imagegrid, holder.imageview.getImageAlpha());
-//                    //holder.imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                }
-//            });
-
-            Bitmap myBitmap1 = BitmapFactory.decodeFile(f.get(position).str1);
-            holder1.imageview.setImageBitmap(myBitmap1);
-            Bitmap myBitmap2 = BitmapFactory.decodeFile(f.get(position).str2);
-            holder2.imageview.setImageBitmap(myBitmap2);
             return convertView;
         }
     }
     class ViewHolder {
         ImageView imageview;
+        ImageView imageview2;
+
+        void onItemClick(View view, int position, String name) {
+            Intent intent = new Intent(ListViewActivity.this, FullActivity.class);
+            intent.setAction(android.content.Intent.ACTION_SEND);
+            String path;
+            if (name.equals("imageview2"))
+                path = f.get(position).image2;
+            else
+                path = f.get(position).image1;
+            intent.putExtra("imageUri", path);
+            startActivity(intent);
+        }
     }
 }

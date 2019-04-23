@@ -26,7 +26,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class GridViewActivity extends AppCompatActivity {
-    //private Bitmap thumbnails;
     private ImageAdapter imageAdapter;
     GridView imagegrid;
     ArrayList<String> f = new ArrayList<String>();// list of file paths
@@ -48,18 +47,23 @@ public class GridViewActivity extends AppCompatActivity {
         imagegrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //full size image on another activity
-                view.buildDrawingCache();
-                Bitmap bitmap = view.getDrawingCache();
-                ByteArrayOutputStream bs = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 50, bs);
+//                //full size image on another activity
+//                view.buildDrawingCache();
+//                Bitmap bitmap = view.getDrawingCache();
+//                ByteArrayOutputStream bs = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 50, bs);
+//                Intent intent = new Intent(GridViewActivity.this, FullActivity.class);
+//                intent.putExtra("byteArray", bs.toByteArray());
+//                startActivity(intent);
+
                 Intent intent = new Intent(GridViewActivity.this, FullActivity.class);
-                intent.putExtra("byteArray", bs.toByteArray());
+                intent.setAction(android.content.Intent.ACTION_SEND);
+                String path;
+                path = f.get(position);
+                intent.putExtra("imageUri", path);
                 startActivity(intent);
             }
         });
-
-
     }
     @Override
     public void onBackPressed() {
@@ -111,15 +115,6 @@ public class GridViewActivity extends AppCompatActivity {
             else {
                 holder = (ViewHolder) convertView.getTag();
             }
-
-//            holder.imageview.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    //zoomImage(imagegrid, holder.imageview.getImageAlpha());
-//                    //holder.imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                }
-//            });
-
             Bitmap myBitmap = BitmapFactory.decodeFile(f.get(position));
             holder.imageview.setImageBitmap(myBitmap);
             return convertView;
@@ -127,54 +122,5 @@ public class GridViewActivity extends AppCompatActivity {
     }
     class ViewHolder {
         ImageView imageview;
-    }
-
-    private void zoomImage(final View view, int image) {
-        // Загружаем изображение с большим разрешением в ImageView
-        view.setAlpha(image);
-
-        // Рассчитываем начальные и конечные границы изображения.
-        final Rect startBounds = new Rect();
-        final Rect finalBounds = new Rect();
-        final Point globalOffset = new Point();
-
-        // Начальные границы берем от прямоугольника компонента миниатюры,
-        // а конечные от прямоугольника компонента полноразмерной картинки.
-        // Также установим смещение границ для полноразмерной картинки в точку начала анимации.
-        view.getGlobalVisibleRect(startBounds);
-        findViewById(R.id.imageOne)
-                .getGlobalVisibleRect(finalBounds, globalOffset);
-        startBounds.offset(-globalOffset.x, -globalOffset.y);
-        finalBounds.offset(-globalOffset.x, -globalOffset.y);
-
-        // Настроим начальные границы, чтобы у них было такое же соотношение как у конечных.
-        // Это предотвратит нежелательное растягивание во время анимации.
-        // также рассчитаем начальный коэффициент масштабирования (конечный коэффициент всегда равен 1.0).
-        float startScale;
-        if ((float) finalBounds.width() / finalBounds.height()
-                > (float) startBounds.width() / startBounds.height()) {
-            // Расширяем границы старта горизонтально
-            startScale = (float) startBounds.height() / finalBounds.height();
-            float startWidth = startScale * finalBounds.width();
-            float deltaWidth = (startWidth - startBounds.width()) / 2;
-            startBounds.left -= deltaWidth;
-            startBounds.right += deltaWidth;
-        } else {
-            // Расширяем границы старта вертикально
-            startScale = (float) startBounds.width() / finalBounds.width();
-            float startHeight = startScale * finalBounds.height();
-            float deltaHeight = (startHeight - startBounds.height()) / 2;
-            startBounds.top -= deltaHeight;
-            startBounds.bottom += deltaHeight;
-        }
-
-        // Прячем миниатюры и показываем полную картинку.
-
-        view.setVisibility(View.VISIBLE);
-
-        // Устанавливаем опорные точки для SCALE_X и SCALE_Y
-        // в левый верхний угол большой картинки (по умолчанию они в центре).
-        view.setScaleX(0f);
-        view.setScaleY(0f);
     }
 }
