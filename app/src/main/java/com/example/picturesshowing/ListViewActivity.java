@@ -83,7 +83,7 @@ public class ListViewActivity extends AppCompatActivity {
             return position;
         }
 
-        public long getItemId(final int position) {
+        public long getItemId(int position) {
             return position;
         }
 
@@ -96,24 +96,27 @@ public class ListViewActivity extends AppCompatActivity {
                 holder1.imageview = convertView.findViewById(R.id.imageFirst);
                 holder1.imageview2 = convertView.findViewById(R.id.imageSecond);
                 convertView.setTag(holder1);
-
-                holder1.imageview.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                          holder1.onItemClick(v, position, "imageview");
-                    }
-                });
-
-                holder1.imageview2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        holder1.onItemClick(v, position, "imageview2");
-                    }
-                });
             }
             else {
                 holder1 = (ListViewActivity.ViewHolder) convertView.getTag();
             }
+
+            holder1.imageview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder1.onItemClick(v, position, "imageview");
+                    Log.d("position of image1 is ", "position " + position);
+                }
+            });
+
+            holder1.imageview2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder1.onItemClick(v, position, "imageview2");
+                    Log.d("position of image2 is ", "position " + position);
+                }
+            });
+
             D itemData = f.get(position);
             Log.d("images", "str1 " + itemData.image1 + " str2 " + itemData.image2);
             Glide
