@@ -1,31 +1,37 @@
 package com.example.picturesshowing;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import java.io.File;
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
-public class RecyclerViewLinearActivity extends AppCompatActivity implements RecyclerViewLinearAdapter.ItemClickListener  {
-
+public class RecyclerViewLinearActivity extends AppCompatActivity{ //implements RecyclerViewLinearAdapter.OnItemClickListener  {
     RecyclerViewLinearAdapter adapter;
     RecyclerView recyclerView;
-    ArrayList<String> f = new ArrayList<String>();// list of file paths
-    ArrayList<Uri> uri = new ArrayList<Uri>();
+    ArrayList<ListStructure> f = new ArrayList<>();// list of file paths
+    RecyclerViewLinearAdapter.OnItemClickListener onItemClickListener = new RecyclerViewLinearAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position, String name) {
+            //fullImageSize
+        Intent intent = new Intent(RecyclerViewLinearActivity.this, FullActivity.class);
+        intent.setAction(android.content.Intent.ACTION_SEND);
+        String path;
+        if (name.equals("myImageView2"))
+            path = f.get(position).image2;
+        else
+            path = f.get(position).image1;
+        intent.putExtra("imageUri", path);
+        startActivity(intent);
+        }
+    };
+    Uri[] uri;
     File[] listFile;
 
     @Override
@@ -37,33 +43,16 @@ public class RecyclerViewLinearActivity extends AppCompatActivity implements Rec
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-
-        // data for showing pictures to user
-        //List<String> data = new ArrayList<>();
-
+        getFromSdcard();
         // set up the RecyclerView
-        recyclerView = findViewById(R.id.rvPictures);
-       // recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //adapter = new RecyclerViewLinearAdapter(this, data);
-        //adapter.setClickListener(this);
-        //recyclerView.setAdapter(adapter);
-
+        recyclerView = findViewById(R.id.rvLinearRecycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new RecyclerViewLinearAdapter(RecyclerViewLinearActivity.this, uri, f, onItemClickListener);
+        recyclerView.setAdapter(adapter);
     }
     @Override
     public void onBackPressed() {
         startActivity(new Intent(RecyclerViewLinearActivity.this, MainActivity.class));
-    }
-
-    @Override
-    public void onItemClick(View view, int position) {
-       // fullImageSize
-    }
-
-    public static Uri getUri(File file) {
-        if (file != null) {
-            return Uri.fromFile(file);
-        }
-        return null;
     }
 
     public void getFromSdcard()
@@ -73,33 +62,34 @@ public class RecyclerViewLinearActivity extends AppCompatActivity implements Rec
         if (file.isDirectory())
         {
             listFile = file.listFiles();
+            uri = new Uri[listFile.length];
             for (int i = 0; i < listFile.length; i++)
             {
-                f.add(listFile[i].getAbsolutePath());
+                ListStructure d = new ListStructure();
+                d.image1 = listFile[i].getAbsolutePath();
+                uri[i] = (Uri.parse(listFile[i].getAbsolutePath()));
+                d.image2 = listFile[++i].getAbsolutePath();
+                uri[i] = (Uri.parse(listFile[i].getAbsolutePath()));
+                f.add(d);
             }
         }
     }
 
-    public static MediaStore.Images[] getImagesNames(Context context) {
-        MediaStore.Images[] files = new MediaStore.Images[]{};
-        Cursor cursor = null;
-        try {
-            String[] projection = { MediaStore.Images.Media.DATA };
-            cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection, null, null, null);
-            int count = 0;
-            if (cursor != null && cursor.moveToFirst()) {
-                int nameIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                do {
-                    // ?!?!?!?!
-                    //files[count] = cursor.get(nameIndex);
-                }
-                while (cursor.moveToNext());
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-        return files;
-    }
+//    class ViewHolder {
+//        ImageView myImageView;
+//        ImageView myImageView2;
+//
+//        void onItemClick(View view, int position, String name) {
+//            // fullImageSize
+//            Intent intent = new Intent(RecyclerViewLinearActivity.this, FullActivity.class);
+//            intent.setAction(android.content.Intent.ACTION_SEND);
+//            String path;
+//            if (name.equals("myImageView2"))
+//                path = f.get(position).image2;
+//            else
+//                path = f.get(position).image1;
+//            intent.putExtra("imageUri", path);
+//            startActivity(intent);
+//        }
+//    }
 }

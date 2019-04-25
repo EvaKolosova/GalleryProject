@@ -2,22 +2,16 @@ package com.example.picturesshowing;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import com.bumptech.glide.Glide;
@@ -25,13 +19,8 @@ import com.bumptech.glide.Glide;
 public class ListViewActivity extends AppCompatActivity {
     private ListViewActivity.ImageAdapter imageAdapter;
     ListView imagelist;
-    ArrayList<D> f = new ArrayList<>();// list of file paths
+    ArrayList<ListStructure> f = new ArrayList<>();// list of file paths
     File[] listFile;
-
-    class D {
-        String image1;
-        String image2;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +49,10 @@ public class ListViewActivity extends AppCompatActivity {
             listFile = file.listFiles();
             for (int i = 0; i < listFile.length; i++)
             {
-                D d = new D();
-                d.image1 = listFile[i].getAbsolutePath();
-                d.image2 = listFile[++i].getAbsolutePath();
-                f.add(d);
+                ListStructure listStructure = new ListStructure();
+                listStructure.image1 = listFile[i].getAbsolutePath();
+                listStructure.image2 = listFile[++i].getAbsolutePath();
+                f.add(listStructure);
             }
         }
     }
@@ -117,7 +106,7 @@ public class ListViewActivity extends AppCompatActivity {
                 }
             });
 
-            D itemData = f.get(position);
+            ListStructure itemData = f.get(position);
             Log.d("images", "str1 " + itemData.image1 + " str2 " + itemData.image2);
             Glide
                     .with(ListViewActivity.this)

@@ -1,31 +1,33 @@
 package com.example.picturesshowing;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.media.Image;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import java.util.List;
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 
 public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerViewLinearAdapter.ViewHolder> {
 
     protected Context mContext;
-    private Uri[] imageID;
+    private ArrayList<ListStructure> f;
+    private Uri[] imageUri;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    private OnItemClickListener mListener;
 
     // data is passed into the constructor
-    RecyclerViewLinearAdapter(Context context, Uri[] imageid) {
+    RecyclerViewLinearAdapter(Context context, Uri[] image, ArrayList<ListStructure> f, OnItemClickListener onItemClickListener) {
         this.mInflater = LayoutInflater.from(context);
-        this.imageID = imageid;
+        this.imageUri = image;
+        this.f = f;
         mContext = context;
+        mListener = onItemClickListener;
     }
 
     // inflates the row layout from xml when needed
@@ -35,46 +37,70 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
         return new ViewHolder(view);
     }
 
+    // parent activity will implement this method to respond to click events
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position, String name);
+    }
+
     // binds the data to the ImageView in each row
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Uri uri = imageID[position];
-        holder.myImageView.setImageURI(uri);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+//        holder.myImageView.setImageURI(imageUri[position]);
+//        holder.myImageView2.setImageURI(imageUri[position]);
+
+
+
+        //????????????
+//        holder.myImageView.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                RecyclerViewLinearActivity.onItemClick(v, position, "imageview");
+//                Log.d("position of image1 is ", "position " + position);
+//            }
+//        });
+
+        ListStructure itemData = f.get(position);
+        Glide
+                .with(mContext)
+                .load(itemData.image1)
+                .into(holder.myImageView);
+        Glide
+                .with(mContext)
+                .load(itemData.image2)
+                .into(holder.myImageView2);
+
+        holder.myImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // OnItemClickListener.super.onItemClick(v, position, "myImageView");
+                Log.d("position of image1 is ", "position " + position);
+            }
+        });
+
+        holder.myImageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //onItemClick(v, position, "myImageView2");
+                Log.d("position of image2 is ", "position " + position);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return imageID.length;
+        return f.size();
     }
 
+    public long getItemId(int position) { return position;}
+
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView myImageView;
+        ImageView myImageView2;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myImageView = itemView.findViewById(R.id.rvPictures);
-            itemView.setOnClickListener(this);
+            myImageView = itemView.findViewById(R.id.imageFirst);
+            myImageView2 = itemView.findViewById(R.id.imageFirst);
         }
-
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-        }
-    }
-
-    // convenience method for getting data at click position
-    Object getItem(int id) {
-        return imageID[id];
-    }
-
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
     }
 }

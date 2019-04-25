@@ -12,11 +12,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
-
     protected Button recyclerViewButton;
     protected Button gridViewButton;
     protected Button listViewButton;
@@ -45,16 +43,10 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
                     REQUEST_CODE_FOR_PERMISSIONS);
             return;
-
         } else {
             // open gallery and take pictures
             //mImagesNames = getImagesNames(this);
         }
-
-
-
-
-
     }
 
     public void recyclerViewClick(View v){
@@ -74,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_FOR_PERMISSIONS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -92,8 +83,4 @@ public class MainActivity extends AppCompatActivity {
     public void requestPermission(Activity currentActivity) {
         ActivityCompat.requestPermissions(currentActivity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_ACCESS);
     }
-
-
-
-
 }
