@@ -19,14 +19,15 @@ public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGr
     private ArrayList<String> f;
     private Uri[] imageUri;
     private LayoutInflater mInflater;
-    //final RecyclerViewGridActivity.ViewHolder holder = new RecyclerViewGridActivity().ViewHolder();
+    private OnItemClickListener mListener;
 
     // data is passed into the constructor
-    RecyclerViewGridAdapter(Context context, Uri[] image, ArrayList<String> f) {
+    RecyclerViewGridAdapter(Context context, Uri[] image, ArrayList<String> f,OnItemClickListener onItemClickListener) {
         this.mInflater = LayoutInflater.from(context);
         this.imageUri = image;
-        mContext = context;
         this.f = f;
+        mContext = context;
+        mListener = onItemClickListener;
     }
 
     // inflates the row layout from xml when needed
@@ -36,16 +37,9 @@ public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGr
         return new ViewHolder(view);
     }
 
-    // parent activity will implement this method to respond to click events
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position, String name);
-    }
-
     // binds the data to the ImageView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-//        holder.myImageView.setImageURI(imageUri[position]);
-//        holder.myImageView2.setImageURI(imageUri[position]);
 
         String itemData = f.get(position);
         Glide
@@ -53,13 +47,18 @@ public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGr
                 .load(itemData)
                 .into(holder.imageview);
 
-//        holder.imageview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // OnItemClickListener.super.onItemClick(v, position, "myImageView");
-//                Log.d("position of image1 is ", "position " + position);
-//            }
-//        });
+        holder.imageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onItemClick(v, position, "myImageView");
+                Log.d("position of image1 is ", "position " + position);
+            }
+        });
+    }
+
+    // parent activity will implement this method to respond to click events
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position, String name);
     }
 
     @Override

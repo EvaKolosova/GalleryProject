@@ -21,8 +21,8 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
     private LayoutInflater mInflater;
     private OnItemClickListener mListener;
 
-    // data is passed into the constructor
     RecyclerViewLinearAdapter(Context context, Uri[] image, ArrayList<ListStructure> f, OnItemClickListener onItemClickListener) {
+
         this.mInflater = LayoutInflater.from(context);
         this.imageUri = image;
         this.f = f;
@@ -37,26 +37,9 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
         return new ViewHolder(view);
     }
 
-    // parent activity will implement this method to respond to click events
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position, String name);
-    }
-
     // binds the data to the ImageView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-//        holder.myImageView.setImageURI(imageUri[position]);
-//        holder.myImageView2.setImageURI(imageUri[position]);
-
-
-
-        //????????????
-//        holder.myImageView.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                RecyclerViewLinearActivity.onItemClick(v, position, "imageview");
-//                Log.d("position of image1 is ", "position " + position);
-//            }
-//        });
 
         ListStructure itemData = f.get(position);
         Glide
@@ -71,7 +54,7 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
         holder.myImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // OnItemClickListener.super.onItemClick(v, position, "myImageView");
+                mListener.onItemClick(v, position, "myImageView");
                 Log.d("position of image1 is ", "position " + position);
             }
         });
@@ -79,10 +62,15 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
         holder.myImageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //onItemClick(v, position, "myImageView2");
+                mListener.onItemClick(v, position, "myImageView2");
                 Log.d("position of image2 is ", "position " + position);
             }
         });
+    }
+
+    // parent activity will implement this method to respond to click events
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position, String name);
     }
 
     @Override
@@ -100,7 +88,7 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
         ViewHolder(View itemView) {
             super(itemView);
             myImageView = itemView.findViewById(R.id.imageFirst);
-            myImageView2 = itemView.findViewById(R.id.imageFirst);
+            myImageView2 = itemView.findViewById(R.id.imageSecond);
         }
     }
 }

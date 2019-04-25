@@ -6,11 +6,18 @@
     android:layout_height="wrap_content"
     tools:context=".RecyclerViewLinearActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvLinearRecycler"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:columnCount="2">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvLinearRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
-public class DataFromGallery {
+public class DataFromGallery {//временный файл доработка в дргуой ветке  - Content provider & Cursor
     final private int SELECT_PICTURE = 123;
 
     //функция выгрузки фото из галереи в ImageViews

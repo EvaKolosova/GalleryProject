@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,20 +14,20 @@ import java.util.ArrayList;
 public class RecyclerViewLinearActivity extends AppCompatActivity{ //implements RecyclerViewLinearAdapter.OnItemClickListener  {
     RecyclerViewLinearAdapter adapter;
     RecyclerView recyclerView;
-    ArrayList<ListStructure> f = new ArrayList<>();// list of file paths
+    ArrayList<ListStructure> f = new ArrayList<>();// list of files paths
     RecyclerViewLinearAdapter.OnItemClickListener onItemClickListener = new RecyclerViewLinearAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position, String name) {
             //fullImageSize
-        Intent intent = new Intent(RecyclerViewLinearActivity.this, FullActivity.class);
-        intent.setAction(android.content.Intent.ACTION_SEND);
-        String path;
-        if (name.equals("myImageView2"))
-            path = f.get(position).image2;
-        else
-            path = f.get(position).image1;
-        intent.putExtra("imageUri", path);
-        startActivity(intent);
+            Intent intent = new Intent(RecyclerViewLinearActivity.this, FullActivity.class);
+            intent.setAction(android.content.Intent.ACTION_SEND);
+            String path;
+            if (name.equals("myImageView2"))
+                path = f.get(position).image2;
+            else
+                path = f.get(position).image1;
+            intent.putExtra("imageUri", path);
+            startActivity(intent);
         }
     };
     Uri[] uri;
@@ -74,22 +73,4 @@ public class RecyclerViewLinearActivity extends AppCompatActivity{ //implements 
             }
         }
     }
-
-//    class ViewHolder {
-//        ImageView myImageView;
-//        ImageView myImageView2;
-//
-//        void onItemClick(View view, int position, String name) {
-//            // fullImageSize
-//            Intent intent = new Intent(RecyclerViewLinearActivity.this, FullActivity.class);
-//            intent.setAction(android.content.Intent.ACTION_SEND);
-//            String path;
-//            if (name.equals("myImageView2"))
-//                path = f.get(position).image2;
-//            else
-//                path = f.get(position).image1;
-//            intent.putExtra("imageUri", path);
-//            startActivity(intent);
-//        }
-//    }
 }
