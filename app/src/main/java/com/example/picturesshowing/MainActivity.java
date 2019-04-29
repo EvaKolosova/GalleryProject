@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 requestPermission(this);
-                Log.e("PERMISSION", "Permission Denied, You cannot see photos from Gallery.");
+                Log.i("PERMISSION", "Permission Denied, You cannot see photos from Gallery.");
             }
         }
     }

@@ -60,7 +60,6 @@ public class RecyclerViewLinearActivity extends AppCompatActivity{ //implements 
             }
             cursor.close();
         }
-
         recyclerView = findViewById(R.id.rvLinearRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecyclerViewLinearAdapter(RecyclerViewLinearActivity.this, uri, f, onItemClickListener);
