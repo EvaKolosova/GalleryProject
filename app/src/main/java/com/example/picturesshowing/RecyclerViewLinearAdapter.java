@@ -55,7 +55,7 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
             @Override
             public void onClick(View v) {
                 mListener.onItemClick(v, position, "myImageView");
-                Log.d("position of image1 is ", "position " + position);
+                Log.d("POSimage1", "position 1 is " + position);
             }
         });
 
@@ -63,7 +63,7 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
             @Override
             public void onClick(View v) {
                 mListener.onItemClick(v, position, "myImageView2");
-                Log.d("position of image2 is ", "position " + position);
+                Log.d("POSimage2", "position 2 is " + position);
             }
         });
     }

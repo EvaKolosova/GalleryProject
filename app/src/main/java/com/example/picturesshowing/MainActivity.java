@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     protected ToggleButton toggleButton;
     private static final int REQUEST_ACCESS = 110;
     final private int REQUEST_CODE_FOR_PERMISSIONS = 12345;
-    protected String[] mImagesNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
                     REQUEST_CODE_FOR_PERMISSIONS);
             return;
-        } else {
-            // open gallery and take pictures
-            //mImagesNames = getImagesNames(this);
         }
     }
 

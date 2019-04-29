@@ -1,7 +1,10 @@
 package com.example.picturesshowing;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -40,7 +43,17 @@ public class RecyclerViewGridActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getFromSdcard();
+        //getFromSdcard();
+        ContentResolver contentResolver = getContentResolver();
+        Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
+        if(cursor!=null){
+            while (cursor.moveToNext()) {
+                String image = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                f.add(image);
+            }
+            cursor.close();
+        }
+
         imagegrid = findViewById(R.id.rvGridRecycler);
         imagegrid.setLayoutManager(new GridLayoutManager(RecyclerViewGridActivity.this, 2));
         adapter = new RecyclerViewGridAdapter(RecyclerViewGridActivity.this, uri, f, onItemClickListener);

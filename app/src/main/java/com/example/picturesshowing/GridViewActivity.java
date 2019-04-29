@@ -1,9 +1,15 @@
 package com.example.picturesshowing;
 
+import android.content.ContentProvider;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,7 +38,17 @@ public class GridViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getFromSdcard();
+        //getFromSdcard();
+        ContentResolver contentResolver = getContentResolver();
+        Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
+        if(cursor!=null){
+            while (cursor.moveToNext()) {
+                String image = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                f.add(image);
+            }
+            cursor.close();
+        }
+
         imagegrid = findViewById(R.id.gridViewImages);
         imageAdapter = new ImageAdapter();
         imagegrid.setAdapter(imageAdapter);

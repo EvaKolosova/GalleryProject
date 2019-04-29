@@ -1,7 +1,10 @@
 package com.example.picturesshowing;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +34,22 @@ public class ListViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getFromSdcard();
+        //getFromSdcard();
+        ContentResolver contentResolver = getContentResolver();
+        Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
+        if(cursor!=null){
+            while (cursor.moveToNext()) {
+                ListStructure d = new ListStructure();
+                String image1 = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                d.image1 = image1;
+                cursor.moveToNext();
+                String image2 = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                d.image2 = image2;
+                f.add(d);
+            }
+            cursor.close();
+        }
+
         imagelist = findViewById(R.id.listViewImages);
         imageAdapter = new ListViewActivity.ImageAdapter();
         imagelist.setAdapter(imageAdapter);
