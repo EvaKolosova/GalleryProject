@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
-import android.widget.ImageView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -73,9 +72,5 @@ public class RecyclerViewGridActivity extends AppCompatActivity {
                 f.add(listFile[i].getAbsolutePath());
             }
         }
-    }
-
-    class ViewHolder {
-        ImageView imageview;
     }
 }

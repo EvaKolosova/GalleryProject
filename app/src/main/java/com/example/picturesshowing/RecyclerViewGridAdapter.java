@@ -69,7 +69,7 @@ public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGr
     public long getItemId(int position) { return position;}
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder{ //implements ItemClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imageview;
 
         ViewHolder(View itemView) {
