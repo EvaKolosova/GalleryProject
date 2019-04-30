@@ -8,6 +8,12 @@ android {
             keyAlias = 'key0'
             keyPassword 'Vevbq nhjkkm1208'
         }
+        debug {
+            storeFile file('C:\\Users\\EKolosova\\KEY\\KEYdoc.jks')
+            storePassword var
+            keyAlias = 'key0'
+            keyPassword 'Vevbq nhjkkm1208'
+        }
     }
     compileSdkVersion 28
     defaultConfig {

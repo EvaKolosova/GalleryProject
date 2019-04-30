@@ -40,7 +40,6 @@ public class RecyclerViewGridActivity extends AppCompatActivity {
 
         //---*---*---*
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //getFromSdcard();
         ContentResolver contentResolver = getContentResolver();
@@ -57,11 +56,6 @@ public class RecyclerViewGridActivity extends AppCompatActivity {
         imagegrid.setLayoutManager(new GridLayoutManager(RecyclerViewGridActivity.this, 2));
         adapter = new RecyclerViewGridAdapter(RecyclerViewGridActivity.this, uri, f, onItemClickListener);
         imagegrid.setAdapter(adapter);
-    }
-
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(RecyclerViewGridActivity.this, MainActivity.class));
     }
 
     public void getFromSdcard() {

@@ -32,7 +32,6 @@ public class ListViewActivity extends AppCompatActivity {
 
         //---*---*---*
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //getFromSdcard();
         ContentResolver contentResolver = getContentResolver();
@@ -53,10 +52,6 @@ public class ListViewActivity extends AppCompatActivity {
         imagelist = findViewById(R.id.listViewImages);
         imageAdapter = new ListViewActivity.ImageAdapter();
         imagelist.setAdapter(imageAdapter);
-    }
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(ListViewActivity.this, MainActivity.class));
     }
 
     public void getFromSdcard()

@@ -33,7 +33,6 @@ public class GridViewActivity extends AppCompatActivity {
 
         //---*---*---*
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //getFromSdcard();
         ContentResolver contentResolver = getContentResolver();
@@ -60,10 +59,6 @@ public class GridViewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(GridViewActivity.this, MainActivity.class));
     }
 
     public void getFromSdcard()

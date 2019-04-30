@@ -16,7 +16,6 @@ public class FullActivity extends AppCompatActivity {
 
         //---*---*---*
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setDisplayShowHomeEnabled(false);
 
         imageView = findViewById(R.id.imageView);
         if(getIntent().hasExtra("imageUri")) {
@@ -24,10 +23,5 @@ public class FullActivity extends AppCompatActivity {
             Uri uri = Uri.parse(uriString);
             imageView.setImageURI(uri);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 }

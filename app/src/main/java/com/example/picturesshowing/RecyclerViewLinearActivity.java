@@ -43,7 +43,6 @@ public class RecyclerViewLinearActivity extends AppCompatActivity{ //implements 
 
         //---*---*---*
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //getFromSdcard();
         ContentResolver contentResolver = getContentResolver();
@@ -64,10 +63,6 @@ public class RecyclerViewLinearActivity extends AppCompatActivity{ //implements 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecyclerViewLinearAdapter(RecyclerViewLinearActivity.this, uri, f, onItemClickListener);
         recyclerView.setAdapter(adapter);
-    }
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(RecyclerViewLinearActivity.this, MainActivity.class));
     }
 
     public void getFromSdcard()
