@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected Button gridViewButton;
     protected Button listViewButton;
     protected ToggleButton toggleButton;
+    protected TextView APKtext;
     private static final int REQUEST_ACCESS = 110;
     final private int REQUEST_CODE_FOR_PERMISSIONS = 12345;
 
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         gridViewButton = findViewById(R.id.gridViewButton);
         listViewButton = findViewById(R.id.listViewButton);
         toggleButton = findViewById(R.id.toggleButton);
+        APKtext = findViewById(R.id.APKversion);
+        APKtext.setText(BuildConfig.BUILD_TYPE);
 
         int hasReadPicturesPermission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
         if (hasReadPicturesPermission != PackageManager.PERMISSION_GRANTED) {
