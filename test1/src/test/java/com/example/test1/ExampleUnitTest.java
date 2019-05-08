@@ -1,4 +1,4 @@
-package com.example.supertogglebutton;
+package com.example.test1;
 
 import org.junit.Test;
 

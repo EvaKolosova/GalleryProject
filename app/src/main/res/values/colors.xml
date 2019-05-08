@@ -11,7 +11,7 @@
 
     <color name="focusedBackground">#118075</color>
     <color name="unselectedBackground">#3D8B7E</color>
-    <color name="selectedBackground">#4BD0E9</color>
+    <color name="selectedBackground">#39E0FF</color>
     <color name="unpressed_color">#4DBB56</color>
     <color name="pressed_color">#4BD0E9</color>
     <color name="toggle_focus_on">@color/unselectedBackground</color>

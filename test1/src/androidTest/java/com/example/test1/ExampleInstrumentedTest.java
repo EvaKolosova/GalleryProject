@@ -1,4 +1,4 @@
-package com.example.supertogglebutton;
+package com.example.test1;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.supertogglebutton.test", appContext.getPackageName());
+        assertEquals("com.example.test1.test", appContext.getPackageName());
     }
 }

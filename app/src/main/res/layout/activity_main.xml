@@ -118,14 +118,15 @@
 
     <com.example.test1.SuperToggleRect
         android:id="@+id/toggleButton"
-        android:layout_width="149dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="@dimen/toggle_width"
+        android:layout_height="@dimen/toggle_height"
+        android:layout_marginLeft="@dimen/activity_margin_left"
+        android:layout_marginTop="@dimen/toggle_margin_left"
         android:textSize="@dimen/text_little_size"
         app:layout_constraintStart_toEndOf="@+id/recyclerViewButton"
-        app:layout_constraintTop_toTopOf="@+id/recyclerViewButton" />
+        app:layout_constraintTop_toTopOf="@+id/recyclerViewButton"    />
+        <!--app:colorOn="@color/colorAccent" возможность менять цвет вручную вне класса -->
+
 
     <TextView
         android:id="@+id/APKversion"

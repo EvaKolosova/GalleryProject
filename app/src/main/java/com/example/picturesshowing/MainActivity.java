@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
 
-        //SuperToggle superToggle = new SuperToggle(this);
-
         recyclerViewButton = findViewById(R.id.recyclerViewButton);
         gridViewButton = findViewById(R.id.gridViewButton);
         listViewButton = findViewById(R.id.listViewButton);
         toggleButton = findViewById(R.id.toggleButton);
         APKtext = findViewById(R.id.APKversion);
         APKtext.setText(BuildConfig.BUILD_TYPE);
+
+        //SuperToggleRect toggleButton = new SuperToggleRect(this, "#526AFF", "#06B5CF");
 
         int hasReadPicturesPermission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
         if (hasReadPicturesPermission != PackageManager.PERMISSION_GRANTED) {
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     REQUEST_CODE_FOR_PERMISSIONS);
             return;
         }
+
     }
 
     public void recyclerViewClick(View v){
