@@ -124,8 +124,8 @@
         android:layout_marginTop="@dimen/toggle_margin_left"
         android:textSize="@dimen/text_little_size"
         app:layout_constraintStart_toEndOf="@+id/recyclerViewButton"
-        app:layout_constraintTop_toTopOf="@+id/recyclerViewButton"    />
-        <!--app:colorOn="@color/colorAccent" возможность менять цвет вручную вне класса -->
+        app:layout_constraintTop_toTopOf="@+id/recyclerViewButton"/>
+    <!--app:colorOn="@color/colorAccent" возможность менять цвет вручную вне класса -->
 
 
     <TextView
