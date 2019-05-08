@@ -15,11 +15,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.example.test1.SuperToggle;
+import com.example.test1.SuperToggleRect;
+
 public class MainActivity extends AppCompatActivity {
     protected Button recyclerViewButton;
     protected Button gridViewButton;
     protected Button listViewButton;
-    protected ToggleButton toggleButton;
+    protected SuperToggleRect toggleButton;
     protected TextView APKtext;
     private static final int REQUEST_ACCESS = 110;
     final private int REQUEST_CODE_FOR_PERMISSIONS = 12345;
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         ///*--**--**--*
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
+
+        //SuperToggle superToggle = new SuperToggle(this);
 
         recyclerViewButton = findViewById(R.id.recyclerViewButton);
         gridViewButton = findViewById(R.id.gridViewButton);
@@ -50,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void recyclerViewClick(View v){
-        if(toggleButton.isChecked() == false) // grid or linear recyclerView
+        if(toggleButton.isOn() == false) // grid or linear recyclerView
             startActivity(new Intent(MainActivity.this, RecyclerViewGridActivity.class));
         else
             startActivity(new Intent(MainActivity.this, RecyclerViewLinearActivity.class));

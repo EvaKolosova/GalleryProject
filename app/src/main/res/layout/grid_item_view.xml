@@ -8,12 +8,12 @@
 
     <ImageView
         android:id="@+id/imageOne"
-        android:layout_width="0dp"
-        android:layout_height="169dp"
+        android:layout_width="@dimen/image_view_item_width"
+        android:layout_height="@dimen/image_view_item_height"
         android:layout_columnWeight="0.5"
         android:scaleType="fitXY"
         android:orientation="horizontal"
-        android:padding="5dp"
+        android:padding="@dimen/image_view_item_padding"
         android:layout_row="0"
         android:layout_column="0" />
 
