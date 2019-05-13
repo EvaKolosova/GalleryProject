@@ -6,7 +6,7 @@
 
       android:allowBackup="true"
       android:icon="@mipmap/ic_launcher_foreground"
-      android:label="Pictures Showing App"
+      android:label="@string/app_name"
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
@@ -15,20 +15,20 @@
 
     <activity
         android:name=".RecyclerViewLinearActivity"
-        android:label="RecyclerView Linear"
+        android:label="@string/recyclerviewlin_activity_name"
         android:parentActivityName=".MainActivity" />
     <activity
         android:name=".ListViewActivity"
-        android:label="ListView"
+        android:label="@string/listview_name"
         android:parentActivityName=".MainActivity" />
 
     <activity
         android:name=".GridViewActivity"
-        android:label="GridView"
+        android:label="@string/gridview_name"
         android:parentActivityName=".MainActivity" />
     <activity
         android:name=".RecyclerViewGridActivity"
-        android:label="RecyclerView Grid"
+        android:label="@string/recyclerviewgrid_activity_name"
         android:parentActivityName=".MainActivity" />
 
     <activity android:name=".MainActivity"

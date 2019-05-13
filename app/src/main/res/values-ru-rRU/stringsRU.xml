@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Демонстрация изображений</string>
+    <string name="title_main_activity">Пожалуйста, нажмите на кнопки</string>
+    <string name="listview_name">List View</string>
+    <string name="gridview_name">Grid View</string>
+    <string name="recyclerview_name">Recycler View</string>
+    <string name="linearview_name">Linear View</string>
+    <string name="recyclerviewlin_activity_name">RecyclerView Linear</string>
+    <string name="recyclerviewgrid_activity_name">RecyclerView Grid</string>
+
+<!--    <string name="listview_name">Вид списком</string>
+    <string name="gridview_name">Вид табличный</string>
+    <string name="recyclerview_name">Вид вращения</string>
+    <string name="linearview_name">Вид линейный</string>
+    <string name="recyclerviewlin_activity_name">Вид вращения линейный</string>
+    <string name="recyclerviewgrid_activity_name">Вид вращения табличный</string> -->
+</resources>

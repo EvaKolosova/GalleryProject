@@ -19,6 +19,8 @@ import android.widget.ToggleButton;
 import com.example.test1.SuperToggle;
 import com.example.test1.SuperToggleRect;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     protected Button recyclerViewButton;
     protected Button gridViewButton;
@@ -41,12 +43,24 @@ public class MainActivity extends AppCompatActivity {
         listViewButton = findViewById(R.id.listViewButton);
         toggleButton = findViewById(R.id.toggleButton);
         APKtext = findViewById(R.id.APKversion);
-        APKtext.setText(BuildConfig.BUILD_TYPE);
+/*      if(Locale.getDefault().getLanguage().equals("ru")) {
+            toggleButton.setTextSize(12);
+            toggleButton.setLabelOn("ВИД ЛИНЕЙНЫЙ");
+            toggleButton.setLabelOff("ВИД ТАБЛИЧНЫЙ");
+           if(BuildConfig.BUILD_TYPE.equals("debug")) APKtext.setText("дебаг");
+           else APKtext.setText("релиз");
+        }
+            else {
+            APKtext.setText(BuildConfig.BUILD_TYPE);
+            toggleButton.setLabelOn("LINEAR VIEW");
+            toggleButton.setLabelOff("GRID VIEW");
+        }*/
 
         Integer colorNumOne = Color.parseColor("#364EEC");
         Integer colorNumTwo = Color.parseColor("#54E3FF");
         toggleButton.setColorOn(colorNumOne);
         toggleButton.setColorOff(colorNumTwo);
+//        toggleButton.getColorOff();
 //        toggleButton.setEnabled(false);
 
         int hasReadPicturesPermission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -56,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                     REQUEST_CODE_FOR_PERMISSIONS);
             return;
         }
-
     }
 
     public void recyclerViewClick(View v){

@@ -78,7 +78,7 @@
         android:backgroundTint="@color/selectedBackground"
         android:onClick="recyclerViewClick"
         android:text="@string/recyclerview_name"
-        android:textSize="@dimen/text_button_size"
+        android:textSize="@dimen/text_middle_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/gridViewButton"
         app:layout_constraintTop_toBottomOf="@+id/textView"

@@ -15,7 +15,8 @@
         android:numColumns="2"
         android:verticalSpacing="@dimen/image_view_item_padding"
         tools:layout_editor_absoluteX="@dimen/image_view_item_width"
-        tools:layout_editor_absoluteY="@dimen/grid_item_Y" />
+        tools:layout_editor_absoluteY="@dimen/grid_item_Y"
+        />
 
 
 </android.support.constraint.ConstraintLayout>

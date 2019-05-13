@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">PicturesShowing</string>
+    <string name="app_name">Pictures Showing App</string>
     <string name="title_main_activity">Please, click on buttons</string>
     <string name="listview_name">List View</string>
     <string name="gridview_name">Grid View</string>
     <string name="recyclerview_name">Recycler View</string>
     <string name="linearview_name">Linear View</string>
+    <string name="recyclerviewlin_activity_name">RecyclerView Linear</string>
+    <string name="recyclerviewgrid_activity_name">RecyclerView Grid</string>
 </resources>
