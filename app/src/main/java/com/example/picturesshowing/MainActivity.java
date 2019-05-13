@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ///*--**--**--*
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
 
@@ -43,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
         APKtext = findViewById(R.id.APKversion);
         APKtext.setText(BuildConfig.BUILD_TYPE);
 
-        //SuperToggleRect toggleButton = new SuperToggleRect(this, "#526AFF", "#06B5CF");
+        Integer colorNumOne = Color.parseColor("#364EEC");
+        Integer colorNumTwo = Color.parseColor("#54E3FF");
+        toggleButton.setColorOn(colorNumOne);
+        toggleButton.setColorOff(colorNumTwo);
+//        toggleButton.setEnabled(false);
 
         int hasReadPicturesPermission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
         if (hasReadPicturesPermission != PackageManager.PERMISSION_GRANTED) {

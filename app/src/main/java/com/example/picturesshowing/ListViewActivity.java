@@ -30,7 +30,6 @@ public class ListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
-        //---*---*---*
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //getFromSdcard();
@@ -54,14 +53,11 @@ public class ListViewActivity extends AppCompatActivity {
         imagelist.setAdapter(imageAdapter);
     }
 
-    public void getFromSdcard()
-    {
+    public void getFromSdcard() {
         File file= new File(android.os.Environment.getExternalStorageDirectory(), "Download");
-        if (file.isDirectory())
-        {
+        if (file.isDirectory()) {
             listFile = file.listFiles();
-            for (int i = 0; i < listFile.length; i++)
-            {
+            for (int i = 0; i < listFile.length; i++) {
                 ListStructure listStructure = new ListStructure();
                 listStructure.image1 = listFile[i].getAbsolutePath();
                 listStructure.image2 = listFile[++i].getAbsolutePath();
@@ -103,20 +99,14 @@ public class ListViewActivity extends AppCompatActivity {
                 holder1 = (ListViewActivity.ViewHolder) convertView.getTag();
             }
 
-            holder1.imageview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    holder1.onItemClick(v, position, "imageview");
-                    Log.d("position of image1 is ", "position " + position);
-                }
+            holder1.imageview.setOnClickListener((View v) -> {
+                holder1.onItemClick(v, position, "imageview");
+                Log.d("position of image1 is ", "position " + position);
             });
 
-            holder1.imageview2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    holder1.onItemClick(v, position, "imageview2");
-                    Log.d("position of image2 is ", "position " + position);
-                }
+            holder1.imageview2.setOnClickListener((View v) -> {
+                holder1.onItemClick(v, position, "imageview2");
+                Log.d("position of image2 is ", "position " + position);
             });
 
             ListStructure itemData = f.get(position);

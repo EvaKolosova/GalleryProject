@@ -6,7 +6,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
@@ -54,12 +53,6 @@ public class SuperToggleRect extends ToggleableView {
     public SuperToggleRect(Context context) {
         super(context);
         initView();
-    }
-    public SuperToggleRect(Context context, String coloron, String coloroff) {
-        super(context);
-        initView();
-        colorOn = Color.parseColor(coloron);
-        colorOff = Color.parseColor(coloroff);
     }
 
     /**
@@ -175,12 +168,8 @@ public class SuperToggleRect extends ToggleableView {
 
             paint.setColor(colorOff);
 
-            RectF rectF = new RectF(0, height, width, 0);
+            RectF rectF = new RectF(0, 0, width, height);
             canvas.drawRoundRect(rectF, 20, 20, paint);
-
-            canvas.drawArc(leftFgArc, 90, 180, false, paint);
-            canvas.drawArc(rightFgArc, 90, -180, false, paint);
-            canvas.drawRect(outerRadii, padding / 10, (width - outerRadii), height - (padding / 10), paint);
 
             int alpha = (int) (((thumbBounds.centerX() - thumbOffCenterX) / (thumbOnCenterX - thumbOffCenterX)) * 255);
             alpha = (alpha < 0 ? 0 : (alpha > 255 ? 255 : alpha));
@@ -193,7 +182,7 @@ public class SuperToggleRect extends ToggleableView {
             }
             paint.setColor(onColor);
 
-            RectF rectFf = new RectF(0, height, width, 0);
+            RectF rectFf = new RectF(0, 0, width, height);
             canvas.drawRoundRect(rectFf, 20, 20, paint);
 
             alpha = (int) (((thumbOnCenterX - thumbBounds.centerX()) / (thumbOnCenterX - thumbOffCenterX)) * 255);

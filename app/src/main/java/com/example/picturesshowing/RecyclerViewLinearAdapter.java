@@ -1,7 +1,6 @@
 package com.example.picturesshowing;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,14 +16,12 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
 
     protected Context mContext;
     private ArrayList<ListStructure> f;
-    private Uri[] imageUri;
     private LayoutInflater mInflater;
     private OnItemClickListener mListener;
 
-    RecyclerViewLinearAdapter(Context context, Uri[] image, ArrayList<ListStructure> f, OnItemClickListener onItemClickListener) {
+    RecyclerViewLinearAdapter(Context context, ArrayList<ListStructure> f, OnItemClickListener onItemClickListener) {
 
         this.mInflater = LayoutInflater.from(context);
-        this.imageUri = image;
         this.f = f;
         mContext = context;
         mListener = onItemClickListener;
@@ -51,20 +48,14 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
                 .load(itemData.image2)
                 .into(holder.myImageView2);
 
-        holder.myImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onItemClick(v, position, "myImageView");
-                Log.d("POSimage1", "position 1 is " + position);
-            }
+        holder.myImageView.setOnClickListener((View v)-> {
+            mListener.onItemClick(v, position, "myImageView");
+            Log.d("POSimage1", "position 1 is " + position);
         });
 
-        holder.myImageView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onItemClick(v, position, "myImageView2");
-                Log.d("POSimage2", "position 2 is " + position);
-            }
+        holder.myImageView2.setOnClickListener((View v) -> {
+            mListener.onItemClick(v, position, "myImageView2");
+            Log.d("POSimage2", "position 2 is " + position);
         });
     }
 

@@ -3,7 +3,6 @@ package com.example.picturesshowing;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,19 +17,15 @@ public class RecyclerViewGridActivity extends AppCompatActivity {
     RecyclerViewGridAdapter adapter;
     RecyclerView imagegrid;
     ArrayList<String> f = new ArrayList<>();// list of files paths
-    RecyclerViewGridAdapter.OnItemClickListener onItemClickListener = new RecyclerViewGridAdapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(View view, int position, String name) {
-            //fullImageSize
-            Intent intent = new Intent(RecyclerViewGridActivity.this, FullActivity.class);
-            intent.setAction(android.content.Intent.ACTION_SEND);
-            String path;
-            path = f.get(position);
-            intent.putExtra("imageUri", path);
-            startActivity(intent);
-        }
+    RecyclerViewGridAdapter.OnItemClickListener onItemClickListener = (View view, int position, String name)-> {
+        //fullImageSize
+        Intent intent = new Intent(RecyclerViewGridActivity.this, FullActivity.class);
+        intent.setAction(android.content.Intent.ACTION_SEND);
+        String path;
+        path = f.get(position);
+        intent.putExtra("imageUri", path);
+        startActivity(intent);
     };
-    Uri[] uri;
     File[] listFile;
 
     @Override
@@ -38,7 +33,6 @@ public class RecyclerViewGridActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_grid_view);
 
-        //---*---*---*
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //getFromSdcard();
@@ -54,7 +48,7 @@ public class RecyclerViewGridActivity extends AppCompatActivity {
 
         imagegrid = findViewById(R.id.rvGridRecycler);
         imagegrid.setLayoutManager(new GridLayoutManager(RecyclerViewGridActivity.this, 2));
-        adapter = new RecyclerViewGridAdapter(RecyclerViewGridActivity.this, uri, f, onItemClickListener);
+        adapter = new RecyclerViewGridAdapter(RecyclerViewGridActivity.this, f, onItemClickListener);
         imagegrid.setAdapter(adapter);
     }
 

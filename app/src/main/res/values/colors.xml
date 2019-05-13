@@ -6,7 +6,7 @@
     <color name="colorAccentLight">#54E3FF</color>
     <color name="colorOrangeLight">#D85951</color>
     <color name="colorBlueLight">#06B5CF</color>
-    <color name="colorPurpleLight">#526AFF</color>
+    <color name="colorPurpleLight">#364EEC</color>
     <color name="colorString">#A09E9E</color>
 
     <color name="focusedBackground">#118075</color>
@@ -19,8 +19,6 @@
     <color name="toggle_on">@color/selectedBackground</color>
     <color name="toggle_pressed">@color/pressed_color</color>
     <color name="toggle_off">@color/unpressed_color</color>
-
-    <!-- This is the color of the divider in the guideline, however it's likely achieved via tint not specific color-->
     <color name="dividerColorDark">#000000</color>
-    <color name="dividerColorLight">#dcdcdc</color>
+    <color name="dividerColorLight">#FFFFFF</color>
 </resources>

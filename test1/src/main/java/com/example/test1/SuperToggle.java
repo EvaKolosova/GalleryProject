@@ -1,7 +1,6 @@
 package com.example.test1;
 
 import android.util.Log;
-import android.widget.ToggleButton;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;

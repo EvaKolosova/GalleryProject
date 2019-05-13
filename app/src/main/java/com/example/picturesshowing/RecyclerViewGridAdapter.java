@@ -1,7 +1,6 @@
 package com.example.picturesshowing;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,14 +16,12 @@ public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGr
 
     protected Context mContext;
     private ArrayList<String> f;
-    private Uri[] imageUri;
     private LayoutInflater mInflater;
     private OnItemClickListener mListener;
 
     // data is passed into the constructor
-    RecyclerViewGridAdapter(Context context, Uri[] image, ArrayList<String> f,OnItemClickListener onItemClickListener) {
+    RecyclerViewGridAdapter(Context context, ArrayList<String> f,OnItemClickListener onItemClickListener) {
         this.mInflater = LayoutInflater.from(context);
-        this.imageUri = image;
         this.f = f;
         mContext = context;
         mListener = onItemClickListener;
@@ -47,12 +44,9 @@ public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGr
                 .load(itemData)
                 .into(holder.imageview);
 
-        holder.imageview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onItemClick(v, position, "myImageView");
-                Log.d("position of image1 is ", "position " + position);
-            }
+        holder.imageview.setOnClickListener((View v) -> {
+            mListener.onItemClick(v, position, "myImageView");
+            Log.d("position of image1 is ", "position " + position);
         });
     }
 

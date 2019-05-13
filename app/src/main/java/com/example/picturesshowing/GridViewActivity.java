@@ -31,7 +31,6 @@ public class GridViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_view);
 
-        //---*---*---*
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //getFromSdcard();
@@ -48,27 +47,21 @@ public class GridViewActivity extends AppCompatActivity {
         imagegrid = findViewById(R.id.gridViewImages);
         imageAdapter = new ImageAdapter();
         imagegrid.setAdapter(imageAdapter);
-        imagegrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(GridViewActivity.this, FullActivity.class);
-                intent.setAction(android.content.Intent.ACTION_SEND);
-                String path;
-                path = f.get(position);
-                intent.putExtra("imageUri", path);
-                startActivity(intent);
-            }
+        imagegrid.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            Intent intent = new Intent(GridViewActivity.this, FullActivity.class);
+            intent.setAction(android.content.Intent.ACTION_SEND);
+            String path;
+            path = f.get(position);
+            intent.putExtra("imageUri", path);
+            startActivity(intent);
         });
     }
 
-    public void getFromSdcard()
-    {
+    public void getFromSdcard() {
         File file= new File(android.os.Environment.getExternalStorageDirectory(), "Download");
-        if (file.isDirectory())
-        {
+        if (file.isDirectory()) {
             listFile = file.listFiles();
-            for (int i = 0; i < listFile.length; i++)
-            {
+            for (int i = 0; i < listFile.length; i++) {
                 f.add(listFile[i].getAbsolutePath());
             }
         }

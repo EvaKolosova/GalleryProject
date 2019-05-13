@@ -14,7 +14,6 @@ public class FullActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full);
 
-        //---*---*---*
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         imageView = findViewById(R.id.imageView);

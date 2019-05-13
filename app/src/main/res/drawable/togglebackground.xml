@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!-- old version of a simple toggle button with images -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-   <!-- <item android:state_checked="false" android:drawable="@drawable/rikkri" />
-
-    <item android:state_checked="true" android:drawable="@drawable/rikkri1" />
-
-    <item android:state_pressed="true">
-        <color android:color="@color/toggle_pressed" />
-    </item>-->
 
     <item android:state_checked="true" android:drawable="@drawable/r2" android:state_focused="true">
         <color android:color="@color/toggle_focus_on" />

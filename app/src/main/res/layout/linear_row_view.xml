@@ -25,5 +25,4 @@
         android:orientation="horizontal"
         android:scaleType="fitXY" />
 
-
 </LinearLayout>
