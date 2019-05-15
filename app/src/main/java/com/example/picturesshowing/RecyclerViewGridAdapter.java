@@ -20,7 +20,7 @@ public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGr
     private OnItemClickListener mListener;
 
     // data is passed into the constructor
-    RecyclerViewGridAdapter(Context context, ArrayList<String> f,OnItemClickListener onItemClickListener) {
+    RecyclerViewGridAdapter(Context context, ArrayList<String> f, OnItemClickListener onItemClickListener) {
         this.mInflater = LayoutInflater.from(context);
         this.f = f;
         mContext = context;

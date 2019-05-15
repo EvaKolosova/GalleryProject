@@ -67,18 +67,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             requestPermission();
         }
-
-
-//        int hasReadPicturesPermission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
-//        if (hasReadPicturesPermission != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this,
-//                    new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
-//                    REQUEST_CODE_FOR_PERMISSIONS);
-//        }
-//        else
-//        {
-//            requestPermission();
-//        }
     }
 
     public void recyclerViewClick(View v){
@@ -112,6 +100,4 @@ public class MainActivity extends AppCompatActivity {
             Log.i("kolosova_permission", "Permission Denied, You cannot see photos from Gallery.");
         }
     }
-
-
 }

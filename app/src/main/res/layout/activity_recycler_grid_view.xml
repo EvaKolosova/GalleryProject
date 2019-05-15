@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="2">
+             android:columnCount="2">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvGridRecycler"
