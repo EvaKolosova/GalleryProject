@@ -1,7 +1,6 @@
 package com.example.picturesshowing;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -63,13 +62,23 @@ public class MainActivity extends AppCompatActivity {
 //        toggleButton.getColorOff();
 //        toggleButton.setEnabled(false);
 
-        int hasReadPicturesPermission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
-        if (hasReadPicturesPermission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
-                    REQUEST_CODE_FOR_PERMISSIONS);
-            return;
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            // Permission has already been granted
+        } else {
+            requestPermission();
         }
+
+
+//        int hasReadPicturesPermission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
+//        if (hasReadPicturesPermission != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this,
+//                    new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+//                    REQUEST_CODE_FOR_PERMISSIONS);
+//        }
+//        else
+//        {
+//            requestPermission();
+//        }
     }
 
     public void recyclerViewClick(View v){
@@ -87,23 +96,22 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, ListViewActivity.class));
     }
 
+    public void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_ACCESS);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_FOR_PERMISSIONS) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                //startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
-
-            } else {
-                requestPermission(this);
-                Log.i("PERMISSION", "Permission Denied, You cannot see photos from Gallery.");
-            }
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            //startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+        } else {
+            requestPermission();
+            Log.i("kolosova_permission", "Permission Denied, You cannot see photos from Gallery.");
         }
     }
 
-    public void requestPermission(Activity currentActivity) {
-        ActivityCompat.requestPermissions(currentActivity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_ACCESS);
-    }
+
 }
