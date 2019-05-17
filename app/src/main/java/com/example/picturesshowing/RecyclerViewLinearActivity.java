@@ -13,11 +13,12 @@ import android.view.View;
 import java.io.File;
 import java.util.ArrayList;
 
-public class RecyclerViewLinearActivity extends AppCompatActivity{ //implements RecyclerViewLinearAdapter.OnItemClickListener  {
-    RecyclerViewLinearAdapter adapter;
-    RecyclerView recyclerView;
-    ArrayList<ListStructure> f = new ArrayList<>();// list of files paths
-    RecyclerViewLinearAdapter.OnItemClickListener onItemClickListener = (View view, int position, String name) -> {
+public class RecyclerViewLinearActivity extends AppCompatActivity { //implements RecyclerViewLinearAdapter.OnItemClickListener  {
+    File[] listFile;
+    private RecyclerViewLinearAdapter adapter;
+    private RecyclerView recyclerView;
+    private ArrayList<ListStructure> f = new ArrayList<>();// list of files paths
+    private RecyclerViewLinearAdapter.OnItemClickListener onItemClickListener = (View view, int position, String name) -> {
         //fullImageSize
         Intent intent = new Intent(RecyclerViewLinearActivity.this, FullActivity.class);
         intent.setAction(android.content.Intent.ACTION_SEND);
@@ -29,7 +30,6 @@ public class RecyclerViewLinearActivity extends AppCompatActivity{ //implements 
         intent.putExtra("imageUri", path);
         startActivity(intent);
     };
-    File[] listFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class RecyclerViewLinearActivity extends AppCompatActivity{ //implements 
         //getFromSdcard();
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
-        if(cursor!=null){
+        if (cursor != null) {
             while (cursor.moveToNext()) {
                 ListStructure d = new ListStructure();
                 String image1 = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
@@ -60,7 +60,7 @@ public class RecyclerViewLinearActivity extends AppCompatActivity{ //implements 
     }
 
     public void getFromSdcard() {
-        File file= new File(android.os.Environment.getExternalStorageDirectory(), "Download");
+        File file = new File(android.os.Environment.getExternalStorageDirectory(), "Download");
         if (file.isDirectory()) {
             listFile = file.listFiles();
             for (int i = 0; i < listFile.length; i++) {

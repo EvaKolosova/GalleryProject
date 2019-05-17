@@ -18,7 +18,7 @@
     <dimen name="text_head_width">350dp</dimen>
     <dimen name="text_little_height">35dp</dimen>
     <dimen name="text_little_width">100dp</dimen>
-    <dimen name="image_view_item_height">230dp</dimen>
+    <dimen name="image_view_item_height">200dp</dimen>
     <dimen name="image_view_item_width">0dp</dimen>
     <dimen name="image_view_item_padding">5dp</dimen>
     <dimen name="grid_item_Y">95dp</dimen>

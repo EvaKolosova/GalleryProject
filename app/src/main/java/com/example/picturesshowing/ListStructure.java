@@ -1,6 +1,6 @@
 package com.example.picturesshowing;
 
 class ListStructure {
-    String image1;
-    String image2;
+    protected String image1;
+    protected String image2;
 }

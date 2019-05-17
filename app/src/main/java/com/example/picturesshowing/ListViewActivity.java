@@ -4,9 +4,9 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +15,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import java.io.File;
-import java.util.ArrayList;
 import com.bumptech.glide.Glide;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class ListViewActivity extends AppCompatActivity {
-    private ListViewActivity.ImageAdapter imageAdapter;
-    ListView imagelist;
-    ArrayList<ListStructure> f = new ArrayList<>();// list of file paths
     File[] listFile;
+    private ListViewActivity.ImageAdapter imageAdapter;
+    private ListView imagelist;
+    private ArrayList<ListStructure> f = new ArrayList<>();// list of file paths
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class ListViewActivity extends AppCompatActivity {
         //getFromSdcard();
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
-        if(cursor!=null){
+        if (cursor != null) {
             while (cursor.moveToNext()) {
                 ListStructure d = new ListStructure();
                 String image1 = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
@@ -53,8 +54,8 @@ public class ListViewActivity extends AppCompatActivity {
         imagelist.setAdapter(imageAdapter);
     }
 
-    public void getFromSdcard() {
-        File file= new File(android.os.Environment.getExternalStorageDirectory(), "Download");
+    /*public void getFromSdcard() {
+        File file = new File(android.os.Environment.getExternalStorageDirectory(), "Download");
         if (file.isDirectory()) {
             listFile = file.listFiles();
             for (int i = 0; i < listFile.length; i++) {
@@ -64,7 +65,7 @@ public class ListViewActivity extends AppCompatActivity {
                 f.add(listStructure);
             }
         }
-    }
+    }*/
 
     public class ImageAdapter extends BaseAdapter {
         private LayoutInflater mInflater;
@@ -94,8 +95,7 @@ public class ListViewActivity extends AppCompatActivity {
                 holder1.imageview = convertView.findViewById(R.id.imageFirst);
                 holder1.imageview2 = convertView.findViewById(R.id.imageSecond);
                 convertView.setTag(holder1);
-            }
-            else {
+            } else {
                 holder1 = (ListViewActivity.ViewHolder) convertView.getTag();
             }
 
@@ -123,6 +123,7 @@ public class ListViewActivity extends AppCompatActivity {
             return convertView;
         }
     }
+
     class ViewHolder {
         ImageView imageview;
         ImageView imageview2;

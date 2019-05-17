@@ -11,11 +11,10 @@
         android:id="@+id/imageFirst"
         android:layout_width="@dimen/image_view_item_width"
         android:layout_height="@dimen/image_view_item_height"
-        android:scaleType="fitCenter"
         android:layout_weight="0.5"
         android:padding="@dimen/image_view_item_padding"
         android:orientation="horizontal"
-        />
+        android:scaleType="centerCrop"  />
 
     <ImageView
         android:id="@+id/imageSecond"
@@ -24,6 +23,6 @@
         android:layout_weight="0.5"
         android:padding="@dimen/image_view_item_padding"
         android:orientation="horizontal"
-        android:scaleType="fitCenter" />
+        android:scaleType="centerCrop" />
 
 </LinearLayout>

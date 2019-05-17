@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGridAdapter.ViewHolder> {
-
     protected Context mContext;
     private ArrayList<String> f;
     private LayoutInflater mInflater;
@@ -50,21 +49,23 @@ public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGr
         });
     }
 
-    // parent activity will implement this method to respond to click events
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position, String name);
-    }
-
     @Override
     public int getItemCount() {
         return f.size();
     }
 
-    public long getItemId(int position) { return position;}
+    public long getItemId(int position) {
+        return position;
+    }
+
+    // parent activity will implement this method to respond to click events
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position, String name);
+    }
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView imageview;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        protected ImageView imageview;
 
         ViewHolder(View itemView) {
             super(itemView);

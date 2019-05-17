@@ -1,13 +1,12 @@
 package com.example.picturesshowing;
 
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 public class FullActivity extends AppCompatActivity {
-
-    ImageView imageView;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +16,7 @@ public class FullActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         imageView = findViewById(R.id.imageView);
-        if(getIntent().hasExtra("imageUri")) {
+        if (getIntent().hasExtra("imageUri")) {
             String uriString = getIntent().getStringExtra("imageUri");
             Uri uri = Uri.parse(uriString);
             imageView.setImageURI(uri);

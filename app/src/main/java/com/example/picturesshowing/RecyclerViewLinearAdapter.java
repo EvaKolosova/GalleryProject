@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerViewLinearAdapter.ViewHolder> {
-
     protected Context mContext;
     private ArrayList<ListStructure> f;
     private LayoutInflater mInflater;
@@ -73,8 +72,8 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView myImageView;
-        ImageView myImageView2;
+        protected ImageView myImageView;
+        protected ImageView myImageView2;
 
         ViewHolder(View itemView) {
             super(itemView);
