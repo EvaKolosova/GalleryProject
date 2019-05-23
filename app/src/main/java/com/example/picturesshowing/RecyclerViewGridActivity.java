@@ -10,11 +10,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class RecyclerViewGridActivity extends AppCompatActivity {
-    File[] listFile;
     private RecyclerViewGridAdapter adapter;
     private RecyclerView imagegrid;
     private ArrayList<String> f = new ArrayList<>();// list of files paths
@@ -52,7 +50,7 @@ public class RecyclerViewGridActivity extends AppCompatActivity {
         imagegrid.setAdapter(adapter);
     }
 
-    public void getFromSdcard() {
+    /*public void getFromSdcard() {
         File file = new File(android.os.Environment.getExternalStorageDirectory(), "Download");
         if (file.isDirectory()) {
             listFile = file.listFiles();
@@ -60,5 +58,5 @@ public class RecyclerViewGridActivity extends AppCompatActivity {
                 f.add(listFile[i].getAbsolutePath());
             }
         }
-    }
+    }*/
 }

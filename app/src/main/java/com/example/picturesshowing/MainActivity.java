@@ -19,6 +19,7 @@ import com.example.test1.SuperToggleRect;
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_ACCESS = 110;
     private Button recyclerViewButton;
+    private Button staggeredGridViewButton;
     private Button gridViewButton;
     private Button listViewButton;
     private SuperToggleRect toggleButton;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
 
+        staggeredGridViewButton = findViewById(R.id.staggeredViewButton);
         recyclerViewButton = findViewById(R.id.recyclerViewButton);
         gridViewButton = findViewById(R.id.gridViewButton);
         listViewButton = findViewById(R.id.listViewButton);
@@ -61,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void gridViewClick(View v) {
         startActivity(new Intent(MainActivity.this, GridViewActivity.class));
+    }
+
+    public void staggeredGridViewClick(View v) {
+        startActivity(new Intent(MainActivity.this, RecyclerViewStaggeredGridActivity.class));
     }
 
     public void listViewClick(View v) {

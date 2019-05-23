@@ -59,7 +59,7 @@ public class RecyclerViewLinearActivity extends AppCompatActivity { //implements
         recyclerView.setAdapter(adapter);
     }
 
-    public void getFromSdcard() {
+    /*public void getFromSdcard() {
         File file = new File(android.os.Environment.getExternalStorageDirectory(), "Download");
         if (file.isDirectory()) {
             listFile = file.listFiles();
@@ -70,5 +70,5 @@ public class RecyclerViewLinearActivity extends AppCompatActivity { //implements
                 f.add(d);
             }
         }
-    }
+    }*/
 }

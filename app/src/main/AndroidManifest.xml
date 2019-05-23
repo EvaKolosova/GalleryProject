@@ -17,6 +17,12 @@
         android:name=".RecyclerViewLinearActivity"
         android:label="@string/recyclerviewlin_activity_name"
         android:parentActivityName=".MainActivity" />
+
+    <activity
+        android:name=".RecyclerViewStaggeredGridActivity"
+        android:label="@string/staggeredgridrecyclerview_name"
+        android:parentActivityName=".MainActivity" />
+
     <activity
         android:name=".ListViewActivity"
         android:label="@string/listview_name"

@@ -10,13 +10,10 @@
     <GridView
         android:id="@+id/gridViewImages"
         android:layout_width="@dimen/image_view_item_width"
-        android:layout_height="@dimen/grid_item__height"
-        android:columnWidth="0.5dp"
+        android:layout_height="match_parent"
         android:numColumns="2"
         android:verticalSpacing="@dimen/image_view_item_padding"
-        tools:layout_editor_absoluteX="@dimen/image_view_item_width"
-        tools:layout_editor_absoluteY="@dimen/grid_item_Y"
-        />
-
+        android:horizontalSpacing="@dimen/image_view_item_padding"
+        android:padding="@dimen/image_view_item_padding"/>
 
 </android.support.constraint.ConstraintLayout>

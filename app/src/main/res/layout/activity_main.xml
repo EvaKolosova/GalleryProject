@@ -8,6 +8,26 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/staggeredViewButton"
+        android:layout_width="@dimen/button_normal_width"
+        android:layout_height="@dimen/button_normal_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="@dimen/activity_margin_left"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="@dimen/activity_margin_right"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/colorAccentLight"
+        android:onClick="staggeredGridViewClick"
+        android:text="@string/staggeredgridrecyclerview_name"
+        android:textSize="@dimen/text_button_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
         android:id="@+id/listViewButton"
         android:layout_width="@dimen/button_normal_width"
         android:layout_height="@dimen/button_normal_height"
@@ -21,10 +41,10 @@
         android:textSize="@dimen/text_button_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gridViewButton"
-        app:layout_constraintVertical_bias="0.485" />
+        app:layout_constraintVertical_bias="0.04" />
 
     <Button
         android:id="@+id/gridViewButton"
@@ -32,18 +52,19 @@
         android:layout_height="@dimen/button_normal_height"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="@dimen/activity_margin_left"
-        android:layout_marginTop="@dimen/activity_margin_top"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="@dimen/activity_margin_right"
         android:layout_marginBottom="@dimen/activity_margin_bottom"
+        android:backgroundTint="@color/colorAccentLight"
         android:onClick="gridViewClick"
         android:text="@string/gridview_name"
-        android:backgroundTint="@color/colorAccentLight"
         android:textSize="@dimen/text_button_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewButton"
-        app:layout_constraintVertical_bias="0.207" />
+        app:layout_constraintTop_toBottomOf="@+id/staggeredViewButton"
+        app:layout_constraintVertical_bias="0.036" />
 
     <TextView
         android:id="@+id/textView"
@@ -80,9 +101,11 @@
         android:text="@string/recyclerview_name"
         android:textSize="@dimen/text_middle_size"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/gridViewButton"
+        app:layout_constraintEnd_toEndOf="@+id/staggeredViewButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/staggeredViewButton"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.018" />
 
    <!--  <ToggleButton
         android:id="@+id/toggleButton"
@@ -121,10 +144,14 @@
         android:layout_width="@dimen/toggle_width"
         android:layout_height="@dimen/toggle_height"
         android:layout_marginLeft="@dimen/activity_margin_left"
-        android:layout_marginTop="@dimen/toggle_margin_left"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:textSize="@dimen/text_little_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toEndOf="@+id/recyclerViewButton"
-        app:layout_constraintTop_toTopOf="@+id/recyclerViewButton"/>
+        app:layout_constraintTop_toTopOf="@+id/recyclerViewButton" />
     <!--app:colorOn="@color/colorAccent" возможность менять цвет вручную вне класса -->
 
 

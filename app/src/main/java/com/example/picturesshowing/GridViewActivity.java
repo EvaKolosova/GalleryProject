@@ -24,21 +24,21 @@ import java.util.ArrayList;
 public class GridViewActivity extends AppCompatActivity {
     private ImageAdapter imageAdapter;
     private GridView imagegrid;
-    private ArrayList<String> f = new ArrayList<String>();// list of file paths
+    private ArrayList<String> f = new ArrayList<>();// list of file paths
     private File[] listFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_view);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //getFromSdcard();
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
         if (cursor != null) {
-            while (cursor.moveToNext()) {
+            while (cursor.moveToNext())
+            {
                 String image = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
                 Log.d("kolosova_checkInfo", "imageInfo: " + image);
                 f.add(image);
@@ -58,7 +58,6 @@ public class GridViewActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
     /*public void getFromSdcard() {
         File file = new File(android.os.Environment.getExternalStorageDirectory(), "Download");
         if (file.isDirectory()) {
