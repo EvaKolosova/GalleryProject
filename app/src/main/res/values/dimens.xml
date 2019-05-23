@@ -8,6 +8,7 @@
     <dimen name="activity_margin_bottom">8dp</dimen>
     <dimen name="bottomText_margin_bottom">8dp</dimen>
     <dimen name="toggle_margin_left">16dp</dimen>
+    <dimen name="toggle_margin_20">20dp</dimen>
 
     <dimen name="text_head_size">25sp</dimen>
     <dimen name="text_button_size">18sp</dimen>
@@ -18,7 +19,7 @@
     <dimen name="text_head_width">350dp</dimen>
     <dimen name="text_little_height">35dp</dimen>
     <dimen name="text_little_width">100dp</dimen>
-    <dimen name="image_view_item_height">200dp</dimen>
+    <dimen name="image_view_item_height">190dp</dimen>
     <dimen name="image_view_item_width">0dp</dimen>
     <dimen name="image_view_item_padding">5dp</dimen>
     <dimen name="grid_item_Y">95dp</dimen>

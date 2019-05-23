@@ -46,9 +46,10 @@ public class RecyclerViewLinearActivity extends AppCompatActivity { //implements
                 ListStructure d = new ListStructure();
                 String image1 = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
                 d.image1 = image1;
-                cursor.moveToNext();
-                String image2 = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                d.image2 = image2;
+                if (cursor.moveToNext()) {
+                    String image2 = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                    d.image2 = image2;
+                }
                 f.add(d);
             }
             cursor.close();
