@@ -45,7 +45,7 @@ public class RecyclerViewStaggeredGridActivity extends AppCompatActivity {
         favPlaces.setAdapter(staggeredAdapter);
     }
 
-    private ArrayList<String> getImages(){
+    private ArrayList<String> getImages() {
         ArrayList<String> imagesPath = new ArrayList<>();
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);

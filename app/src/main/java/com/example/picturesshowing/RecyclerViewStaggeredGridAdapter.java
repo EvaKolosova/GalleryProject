@@ -42,15 +42,10 @@ public class RecyclerViewStaggeredGridAdapter extends RecyclerView.Adapter<Recyc
                 .load(itemData)
                 .into(holder.myImageView);
 
-        holder.myImageView.setOnClickListener((View v)-> {
+        holder.myImageView.setOnClickListener((View v) -> {
             mListener.onItemClick(v, position, "myImageView");
             Log.d("kolosova_checkInfo", "position i is " + position);
         });
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position, String name);
     }
 
     @Override
@@ -58,10 +53,17 @@ public class RecyclerViewStaggeredGridAdapter extends RecyclerView.Adapter<Recyc
         return images.size();
     }
 
-    public long getItemId(int position) { return position;}
+    public long getItemId(int position) {
+        return position;
+    }
+
+    // parent activity will implement this method to respond to click events
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position, String name);
+    }
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         protected ImageView myImageView;
 
         ViewHolder(View itemView) {
