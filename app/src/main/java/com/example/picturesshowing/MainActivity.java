@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button gridViewButton;
     private Button listViewButton;
     private SuperToggleRect toggleButton;
-    private TextView APKtext;
+    private TextView textAPK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         gridViewButton = findViewById(R.id.gridViewButton);
         listViewButton = findViewById(R.id.listViewButton);
         toggleButton = findViewById(R.id.toggleButton);
-        APKtext = findViewById(R.id.APKversion);
+        textAPK = findViewById(R.id.APKversion);
 
         Integer colorNumOne = Color.parseColor("#364EEC");
         Integer colorNumTwo = Color.parseColor("#54E3FF");
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 //        toggleButton.getColorOff();
 //        toggleButton.setEnabled(false);
 
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
             // Permission has already been granted
         } else {
             requestPermission();
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_ACCESS && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_GET_CONTENT);
+            Log.i("kolosova_permission", "Permission Granted, You can see photos from Gallery.");
         } else {
             requestPermission();
             Log.i("kolosova_permission", "Permission Denied, You cannot see photos from Gallery.");

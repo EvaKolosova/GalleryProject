@@ -22,10 +22,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class GridViewActivity extends AppCompatActivity {
+    private ArrayList<String> imagesPaths = new ArrayList<>();
     private ImageAdapter imageAdapter;
+    private File[] listOfFiles;
     private GridView imagegrid;
-    private ArrayList<String> f = new ArrayList<>();// list of file paths
-    private File[] listFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +37,10 @@ public class GridViewActivity extends AppCompatActivity {
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
         if (cursor != null) {
-            while (cursor.moveToNext())
-            {
+            while (cursor.moveToNext()) {
                 String image = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
                 Log.d("kolosova_checkInfo", "imageInfo: " + image);
-                f.add(image);
+                imagesPaths.add(image);
             }
             cursor.close();
         }
@@ -53,7 +52,7 @@ public class GridViewActivity extends AppCompatActivity {
             Intent intent = new Intent(GridViewActivity.this, FullActivity.class);
             intent.setAction(android.content.Intent.ACTION_SEND);
             String path;
-            path = f.get(position);
+            path = imagesPaths.get(position);
             intent.putExtra("imageUri", path);
             startActivity(intent);
         });
@@ -61,9 +60,9 @@ public class GridViewActivity extends AppCompatActivity {
     /*public void getFromSdcard() {
         File file = new File(android.os.Environment.getExternalStorageDirectory(), "Download");
         if (file.isDirectory()) {
-            listFile = file.listFiles();
-            for (int i = 0; i < listFile.length; i++) {
-                f.add(listFile[i].getAbsolutePath());
+            listOfFiles = file.listFiles();
+            for (int i = 0; i < listOfFiles.length; i++) {
+                imagesPaths.add(listOfFiles[i].getAbsolutePath());
             }
         }
     }*/
@@ -76,7 +75,7 @@ public class GridViewActivity extends AppCompatActivity {
         }
 
         public int getCount() {
-            return f.size();
+            return imagesPaths.size();
         }
 
         public Object getItem(int position) {
@@ -93,18 +92,18 @@ public class GridViewActivity extends AppCompatActivity {
                 holder = new ViewHolder();
                 convertView = mInflater.inflate(
                         R.layout.grid_item_view, null);
-                holder.imageview = convertView.findViewById(R.id.imageOne);
+                holder.imageView = convertView.findViewById(R.id.imageOne);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            Bitmap myBitmap = BitmapFactory.decodeFile(f.get(position));
-            holder.imageview.setImageBitmap(myBitmap);
+            Bitmap myBitmap = BitmapFactory.decodeFile(imagesPaths.get(position));
+            holder.imageView.setImageBitmap(myBitmap);
             return convertView;
         }
     }
 
     class ViewHolder {
-        ImageView imageview;
+        ImageView imageView;
     }
 }

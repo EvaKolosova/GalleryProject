@@ -13,15 +13,16 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class RecyclerViewGridActivity extends AppCompatActivity {
+    private ArrayList<String> imagesPaths = new ArrayList<>();
     private RecyclerViewGridAdapter adapter;
-    private RecyclerView imagegrid;
-    private ArrayList<String> f = new ArrayList<>();// list of files paths
+    private RecyclerView imageGrid;
+
     private RecyclerViewGridAdapter.OnItemClickListener onItemClickListener = (View view, int position, String name) -> {
         //fullImageSize
         Intent intent = new Intent(RecyclerViewGridActivity.this, FullActivity.class);
         intent.setAction(android.content.Intent.ACTION_SEND);
         String path;
-        path = f.get(position);
+        path = imagesPaths.get(position);
         intent.putExtra("imageUri", path);
         startActivity(intent);
     };
@@ -39,23 +40,23 @@ public class RecyclerViewGridActivity extends AppCompatActivity {
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 String image = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                f.add(image);
+                imagesPaths.add(image);
             }
             cursor.close();
         }
 
-        imagegrid = findViewById(R.id.rvGridRecycler);
-        imagegrid.setLayoutManager(new GridLayoutManager(RecyclerViewGridActivity.this, 2));
-        adapter = new RecyclerViewGridAdapter(RecyclerViewGridActivity.this, f, onItemClickListener);
-        imagegrid.setAdapter(adapter);
+        imageGrid = findViewById(R.id.rvGridRecycler);
+        imageGrid.setLayoutManager(new GridLayoutManager(RecyclerViewGridActivity.this, 2));
+        adapter = new RecyclerViewGridAdapter(RecyclerViewGridActivity.this, imagesPaths, onItemClickListener);
+        imageGrid.setAdapter(adapter);
     }
 
     /*public void getFromSdcard() {
         File file = new File(android.os.Environment.getExternalStorageDirectory(), "Download");
         if (file.isDirectory()) {
-            listFile = file.listFiles();
-            for (int i = 0; i < listFile.length; i++) {
-                f.add(listFile[i].getAbsolutePath());
+            listOfFiles = file.listFiles();
+            for (int i = 0; i < listOfFiles.length; i++) {
+                imagesPaths.add(listOfFiles[i].getAbsolutePath());
             }
         }
     }*/

@@ -13,8 +13,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class RecyclerViewStaggeredGridAdapter extends RecyclerView.Adapter<RecyclerViewStaggeredGridAdapter.ViewHolder> {
-    protected Context mContext;
     private ArrayList<String> images;
+    private Context mContext;
     private LayoutInflater mInflater;
     private OnItemClickListener mListener;
 
@@ -40,11 +40,11 @@ public class RecyclerViewStaggeredGridAdapter extends RecyclerView.Adapter<Recyc
         Glide
                 .with(mContext)
                 .load(itemData)
-                .into(holder.myImageView);
+                .into(holder.imageView);
 
-        holder.myImageView.setOnClickListener((View v) -> {
-            mListener.onItemClick(v, position, "myImageView");
-            Log.d("kolosova_checkInfo", "position i is " + position);
+        holder.imageView.setOnClickListener((View v) -> {
+            mListener.onItemClick(v, position, "imageView");
+            Log.d("kolosova_checkInfo", "position is: " + position);
         });
     }
 
@@ -64,11 +64,11 @@ public class RecyclerViewStaggeredGridAdapter extends RecyclerView.Adapter<Recyc
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder {
-        protected ImageView myImageView;
+        protected ImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myImageView = itemView.findViewById(R.id.staggeredImageView);
+            imageView = itemView.findViewById(R.id.staggeredImageView);
         }
     }
 }

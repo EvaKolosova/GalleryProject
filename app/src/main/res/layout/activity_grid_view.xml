@@ -11,9 +11,11 @@
         android:id="@+id/gridViewImages"
         android:layout_width="@dimen/image_view_item_width"
         android:layout_height="match_parent"
-        android:numColumns="2"
-        android:verticalSpacing="@dimen/image_view_item_padding"
         android:horizontalSpacing="@dimen/image_view_item_padding"
-        android:padding="@dimen/image_view_item_padding"/>
+        android:numColumns="2"
+        android:padding="@dimen/image_view_item_padding"
+        android:verticalSpacing="@dimen/image_view_item_padding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

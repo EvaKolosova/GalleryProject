@@ -21,10 +21,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class ListViewActivity extends AppCompatActivity {
-    File[] listFile;
+    private ArrayList<ListStructure> imagesPaths = new ArrayList<>();
+    private File[] listOfFiles;
     private ListViewActivity.ImageAdapter imageAdapter;
-    private ListView imagelist;
-    private ArrayList<ListStructure> f = new ArrayList<>();// list of file paths
+    private ListView listOfImages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,30 +40,30 @@ public class ListViewActivity extends AppCompatActivity {
             while (cursor.moveToNext()) {
                 ListStructure d = new ListStructure();
                 String image1 = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                d.image1 = image1;
-                if(cursor.moveToNext()) {
+                d.imageOne = image1;
+                if (cursor.moveToNext()) {
                     String image2 = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                    d.image2 = image2;
+                    d.imageTwo = image2;
                 }
-                f.add(d);
+                imagesPaths.add(d);
             }
             cursor.close();
         }
 
-        imagelist = findViewById(R.id.listViewImages);
+        listOfImages = findViewById(R.id.listViewImages);
         imageAdapter = new ListViewActivity.ImageAdapter();
-        imagelist.setAdapter(imageAdapter);
+        listOfImages.setAdapter(imageAdapter);
     }
 
     /*public void getFromSdcard() {
         File file = new File(android.os.Environment.getExternalStorageDirectory(), "Download");
         if (file.isDirectory()) {
-            listFile = file.listFiles();
-            for (int i = 0; i < listFile.length; i++) {
+            listOfFiles = file.listFiles();
+            for (int i = 0; i < listOfFiles.length; i++) {
                 ListStructure listStructure = new ListStructure();
-                listStructure.image1 = listFile[i].getAbsolutePath();
-                listStructure.image2 = listFile[++i].getAbsolutePath();
-                f.add(listStructure);
+                listStructure.imageOne = listOfFiles[i].getAbsolutePath();
+                listStructure.imageTwo = listOfFiles[++i].getAbsolutePath();
+                imagesPaths.add(listStructure);
             }
         }
     }*/
@@ -76,7 +76,7 @@ public class ListViewActivity extends AppCompatActivity {
         }
 
         public int getCount() {
-            return f.size();
+            return imagesPaths.size();
         }
 
         public Object getItem(int position) {
@@ -93,50 +93,50 @@ public class ListViewActivity extends AppCompatActivity {
             if (convertView == null) {
                 holder1 = new ListViewActivity.ViewHolder();
                 convertView = mInflater.inflate(R.layout.linear_row_view, null);
-                holder1.imageview = convertView.findViewById(R.id.imageFirst);
-                holder1.imageview2 = convertView.findViewById(R.id.imageSecond);
+                holder1.ivFirst = convertView.findViewById(R.id.imageFirst);
+                holder1.ivSecond = convertView.findViewById(R.id.imageSecond);
                 convertView.setTag(holder1);
             } else {
                 holder1 = (ListViewActivity.ViewHolder) convertView.getTag();
             }
 
-            holder1.imageview.setOnClickListener((View v) -> {
-                holder1.onItemClick(v, position, "imageview");
-                Log.d("position of image1 is ", "position " + position);
+            holder1.ivFirst.setOnClickListener((View v) -> {
+                holder1.onItemClick(v, position, "ivFirst");
+                Log.d("imageOne position", "position is: " + position);
             });
 
-            holder1.imageview2.setOnClickListener((View v) -> {
-                holder1.onItemClick(v, position, "imageview2");
-                Log.d("position of image2 is ", "position " + position);
+            holder1.ivSecond.setOnClickListener((View v) -> {
+                holder1.onItemClick(v, position, "ivSecond");
+                Log.d("imageTwo position", "position is: " + position);
             });
 
-            ListStructure itemData = f.get(position);
-            Log.d("images", "str1 " + itemData.image1 + " str2 " + itemData.image2);
+            ListStructure itemData = imagesPaths.get(position);
+            Log.d("images", "pathOne " + itemData.imageOne + ", pathTwo " + itemData.imageTwo);
             Glide
                     .with(ListViewActivity.this)
-                    .load(itemData.image1)
-                    .into(holder1.imageview);
+                    .load(itemData.imageOne)
+                    .into(holder1.ivFirst);
             Glide
                     .with(ListViewActivity.this)
-                    .load(itemData.image2)
-                    .into(holder1.imageview2);
+                    .load(itemData.imageTwo)
+                    .into(holder1.ivSecond);
 
             return convertView;
         }
     }
 
     class ViewHolder {
-        ImageView imageview;
-        ImageView imageview2;
+        ImageView ivFirst;
+        ImageView ivSecond;
 
         void onItemClick(View view, int position, String name) {
             Intent intent = new Intent(ListViewActivity.this, FullActivity.class);
             intent.setAction(android.content.Intent.ACTION_SEND);
             String path;
-            if (name.equals("imageview2"))
-                path = f.get(position).image2;
+            if (name.equals("ivSecond"))
+                path = imagesPaths.get(position).imageTwo;
             else
-                path = f.get(position).image1;
+                path = imagesPaths.get(position).imageOne;
             intent.putExtra("imageUri", path);
             startActivity(intent);
         }

@@ -13,15 +13,15 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGridAdapter.ViewHolder> {
-    protected Context mContext;
-    private ArrayList<String> f;
+    private ArrayList<String> imagesPaths;
+    private Context mContext;
     private LayoutInflater mInflater;
     private OnItemClickListener mListener;
 
     // data is passed into the constructor
-    RecyclerViewGridAdapter(Context context, ArrayList<String> f, OnItemClickListener onItemClickListener) {
+    RecyclerViewGridAdapter(Context context, ArrayList<String> imagesPaths, OnItemClickListener onItemClickListener) {
         this.mInflater = LayoutInflater.from(context);
-        this.f = f;
+        this.imagesPaths = imagesPaths;
         mContext = context;
         mListener = onItemClickListener;
     }
@@ -37,21 +37,21 @@ public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGr
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        String itemData = f.get(position);
+        String itemData = imagesPaths.get(position);
         Glide
                 .with(mContext)
                 .load(itemData)
-                .into(holder.imageview);
+                .into(holder.imageView);
 
-        holder.imageview.setOnClickListener((View v) -> {
+        holder.imageView.setOnClickListener((View v) -> {
             mListener.onItemClick(v, position, "myImageView");
-            Log.d("position of image1 is ", "position " + position);
+            Log.d("imageOne position", "position is: " + position);
         });
     }
 
     @Override
     public int getItemCount() {
-        return f.size();
+        return imagesPaths.size();
     }
 
     public long getItemId(int position) {
@@ -65,11 +65,11 @@ public class RecyclerViewGridAdapter extends RecyclerView.Adapter<RecyclerViewGr
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder {
-        protected ImageView imageview;
+        protected ImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);
-            imageview = itemView.findViewById(R.id.imageOne);
+            imageView = itemView.findViewById(R.id.imageOne);
         }
     }
 }

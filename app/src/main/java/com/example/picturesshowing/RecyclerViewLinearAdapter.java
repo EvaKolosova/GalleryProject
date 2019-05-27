@@ -13,14 +13,14 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerViewLinearAdapter.ViewHolder> {
-    protected Context mContext;
-    private ArrayList<ListStructure> f;
+    private ArrayList<ListStructure> imagesPaths;
+    private Context mContext;
     private LayoutInflater mInflater;
     private OnItemClickListener mListener;
 
-    RecyclerViewLinearAdapter(Context context, ArrayList<ListStructure> f, OnItemClickListener onItemClickListener) {
+    RecyclerViewLinearAdapter(Context context, ArrayList<ListStructure> imagesPaths, OnItemClickListener onItemClickListener) {
         this.mInflater = LayoutInflater.from(context);
-        this.f = f;
+        this.imagesPaths = imagesPaths;
         mContext = context;
         mListener = onItemClickListener;
     }
@@ -36,25 +36,34 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        ListStructure itemData = f.get(position);
+        ListStructure itemData = imagesPaths.get(position);
         Glide
                 .with(mContext)
-                .load(itemData.image1)
-                .into(holder.myImageView);
+                .load(itemData.imageOne)
+                .into(holder.ivFirst);
         Glide
                 .with(mContext)
-                .load(itemData.image2)
-                .into(holder.myImageView2);
+                .load(itemData.imageTwo)
+                .into(holder.ivSecond);
 
-        holder.myImageView.setOnClickListener((View v)-> {
-            mListener.onItemClick(v, position, "myImageView");
-            Log.d("POSimage1", "position 1 is " + position);
+        holder.ivFirst.setOnClickListener((View v) -> {
+            mListener.onItemClick(v, position, "ivFirst");
+            Log.d("imageOne position", "position is: " + position);
         });
 
-        holder.myImageView2.setOnClickListener((View v) -> {
-            mListener.onItemClick(v, position, "myImageView2");
-            Log.d("POSimage2", "position 2 is " + position);
+        holder.ivSecond.setOnClickListener((View v) -> {
+            mListener.onItemClick(v, position, "ivSecond");
+            Log.d("imageTwo position", "position is: " + position);
         });
+    }
+
+    @Override
+    public int getItemCount() {
+        return imagesPaths.size();
+    }
+
+    public long getItemId(int position) {
+        return position;
     }
 
     // parent activity will implement this method to respond to click events
@@ -62,22 +71,15 @@ public class RecyclerViewLinearAdapter extends RecyclerView.Adapter<RecyclerView
         void onItemClick(View view, int position, String name);
     }
 
-    @Override
-    public int getItemCount() {
-        return f.size();
-    }
-
-    public long getItemId(int position) { return position;}
-
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        protected ImageView myImageView;
-        protected ImageView myImageView2;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        protected ImageView ivFirst;
+        protected ImageView ivSecond;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myImageView = itemView.findViewById(R.id.imageFirst);
-            myImageView2 = itemView.findViewById(R.id.imageSecond);
+            ivFirst = itemView.findViewById(R.id.imageFirst);
+            ivSecond = itemView.findViewById(R.id.imageSecond);
         }
     }
 }

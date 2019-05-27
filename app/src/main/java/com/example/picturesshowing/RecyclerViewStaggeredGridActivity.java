@@ -13,15 +13,16 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class RecyclerViewStaggeredGridActivity extends AppCompatActivity {
+    private ArrayList<String> imagesPaths;
+    private RecyclerView rvStaggered;
     private RecyclerViewStaggeredGridAdapter staggeredAdapter;
-    private RecyclerView favPlaces;
-    private ArrayList<String> images;// list of files paths
+
     private RecyclerViewStaggeredGridAdapter.OnItemClickListener onItemClickListener = (View view, int position, String name) -> {
         //fullImageSize
         Intent intent = new Intent(RecyclerViewStaggeredGridActivity.this, FullActivity.class);
         intent.setAction(android.content.Intent.ACTION_SEND);
         String path;
-        path = images.get(position);
+        path = imagesPaths.get(position);
         intent.putExtra("imageUri", path);
         startActivity(intent);
     };
@@ -33,19 +34,19 @@ public class RecyclerViewStaggeredGridActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        images = getImages();
+        imagesPaths = getImagesPaths();
 
-        favPlaces = findViewById(R.id.rvStaggeredGridRecycler);
+        rvStaggered = findViewById(R.id.rvStaggeredGridRecycler);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-        favPlaces.setLayoutManager(layoutManager);
-        favPlaces.setHasFixedSize(true);
+        rvStaggered.setLayoutManager(layoutManager);
+        rvStaggered.setHasFixedSize(true);
 
-        staggeredAdapter = new RecyclerViewStaggeredGridAdapter(this, images, onItemClickListener);
-        favPlaces.setAdapter(staggeredAdapter);
+        staggeredAdapter = new RecyclerViewStaggeredGridAdapter(this, imagesPaths, onItemClickListener);
+        rvStaggered.setAdapter(staggeredAdapter);
     }
 
-    private ArrayList<String> getImages() {
+    private ArrayList<String> getImagesPaths() {
         ArrayList<String> imagesPath = new ArrayList<>();
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
